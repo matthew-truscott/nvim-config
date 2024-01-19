@@ -15,6 +15,10 @@ return {
             cond = lazy_status.has_updates,
           },
           { "encoding" },
+          {
+            "filename",
+            path = 3,
+          },
           { "fileformat" },
           { "filetype" },
         },
