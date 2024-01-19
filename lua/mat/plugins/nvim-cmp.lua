@@ -2,12 +2,12 @@ return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-buffer", -- source for text in buffer
-    "hrsh7th/cmp-path", -- source for file system paths
-    "L3MON4D3/LuaSnip", -- snippet engine
-    "saadparwaiz1/cmp_luasnip", -- for autocompletion
+    "hrsh7th/cmp-buffer",           -- source for text in buffer
+    "hrsh7th/cmp-path",             -- source for file system paths
+    "L3MON4D3/LuaSnip",             -- snippet engine
+    "saadparwaiz1/cmp_luasnip",     -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
-    "onsails/lspkind.nvim", -- vs-code like pictograms
+    "onsails/lspkind.nvim",         -- vs-code like pictograms
   },
   config = function()
     local cmp = require("cmp")
@@ -40,8 +40,8 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
-        { name = "buffer" }, -- text within current buffer
-        { name = "path" }, -- file system paths
+        { name = "buffer" },  -- text within current buffer
+        { name = "path" },    -- file system paths
       }),
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
@@ -54,6 +54,49 @@ return {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
+    })
+
+    lspkind.init({
+      mode = 'symbol_text',
+
+      -- default symbol map
+      -- can be either 'default' (requires nerd-fonts font) or
+      -- 'codicons' for codicon preset (requires vscode-codicons font)
+      --
+      -- default: 'default'
+      preset = 'codicons',
+
+      -- override preset symbols
+      --
+      -- default: {}
+      symbol_map = {
+        Text = "󰉿",
+        Method = "󰆧",
+        Function = "󰊕",
+        Constructor = "",
+        Field = "󰜢",
+        Variable = "󰀫",
+        Class = "󰠱",
+        Interface = "",
+        Module = "",
+        Property = "󰜢",
+        Unit = "󰑭",
+        Value = "󰎠",
+        Enum = "",
+        Keyword = "󰌋",
+        Snippet = "",
+        Color = "󰏘",
+        File = "󰈙",
+        Reference = "󰈇",
+        Folder = "󰉋",
+        EnumMember = "",
+        Constant = "󰏿",
+        Struct = "󰙅",
+        Event = "",
+        Operator = "󰆕",
+        TypeParameter = "",
+      },
+
     })
   end,
 }
