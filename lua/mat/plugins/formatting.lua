@@ -1,3 +1,15 @@
+DARKER_AVAILABLE = nil
+
+function CheckDarkerAvailability()
+  if DARKER_AVAILABLE ~= nil then
+    return DARKER_AVAILABLE
+  end
+
+  local exit_code = os.execute("darker --version > /dev/null 2>&1")
+  DARKER_AVAILABLE = (exit_code == 0)
+  return DARKER_AVAILABLE
+end
+
 return {
   "stevearc/conform.nvim",
   event = { "BufReadPre", "BufNewFile" },
@@ -6,7 +18,13 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        python = { "isort", "black" },
+        python = function()
+          if CheckDarkerAvailability() then
+            return { "darker" }
+          else
+            return { "isort", "black" }
+          end
+        end,
         rust = { "rustfmt" },
         lua = { "stylua" },
         csharp = { "csharpier" },
