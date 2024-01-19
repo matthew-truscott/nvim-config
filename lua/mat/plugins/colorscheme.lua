@@ -9,8 +9,11 @@ return {
     local kanagawa = require("kanagawa")
     kanagawa.setup({
       transparent = true,
-      theme = "dragon",
+      theme = "lotus",
     })
     vim.cmd([[colorscheme kanagawa]])
+
+    vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "NONE", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
   end,
 }
