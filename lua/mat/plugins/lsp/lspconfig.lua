@@ -118,6 +118,12 @@ return {
       on_attach = on_attach,
     })
 
+    lspconfig.tsserver.setup({
+      capabilities = capabilities,
+      handlers = handlers,
+      on_attach = on_attach,
+    })
+
     -- configure rust-analyzer server
     lspconfig.rust_analyzer.setup({
       on_attach = on_attach,
