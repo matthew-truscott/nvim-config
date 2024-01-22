@@ -1,19 +1,23 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
-  main = "ibl",
-  opts = {
-    indent = { char = "▏" },
-    scope = { show_start = false, show_end = false },
-    exclude = {
-      buftypes = {
-        "nofile",
-        "terminal",
+  config = function()
+    local indent = require("ibl")
+    indent.setup({
+      indent = { char = "▏" },
+      whitespace = {
+        highlight = { "Whitespace", "NonText" },
       },
-      filetypes = {
-        "help",
-        "lazy",
-        "NvimTree",
-      }
-    }
-  }
+      scope = { show_start = false, show_end = false },
+      exclude = {
+        buftypes = {
+          "nofile",
+          "terminal",
+        },
+        filetypes = {
+          "help",
+          "lazy",
+        },
+      },
+    })
+  end,
 }
