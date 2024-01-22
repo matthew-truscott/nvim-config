@@ -3,7 +3,7 @@ return {
   config = function()
     local indent = require("ibl")
     indent.setup({
-      indent = { char = "▏" },
+      indent = { char = "│" },
       whitespace = {
         highlight = { "Whitespace", "NonText" },
       },
@@ -16,6 +16,7 @@ return {
         filetypes = {
           "help",
           "lazy",
+          "LazyGit",
         },
       },
     })
