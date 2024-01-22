@@ -7,6 +7,15 @@ return {
     local comment = require("Comment")
 
     -- enable comment
-    comment.setup({})
+    comment.setup({
+      toggler = {
+        line = "<leader>cc",
+        block = "<leader>cb",
+      },
+      opleader = {
+        line = "<leader>gc",
+        block = "<leader>gb",
+      },
+    })
   end,
 }
