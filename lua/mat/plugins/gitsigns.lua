@@ -12,9 +12,9 @@ return {
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
-        map('n', '<leader>gb', function() gs.blame_line { full = true } end)
-      end
+        map("n", "<leader>gb", gs.blame_line, { desc = "Blame Line" })
+        map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview Hunk" })
+      end,
     })
-  end
-
+  end,
 }
