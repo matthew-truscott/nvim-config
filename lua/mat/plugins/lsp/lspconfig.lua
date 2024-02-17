@@ -148,6 +148,12 @@ return {
       },
     })
 
+    lspconfig.clangd.setup({
+      capabilities = capabilities,
+      handlers = handlers,
+      on_attach = on_attach,
+    })
+
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
     lspconfig.omnisharp.setup({
       cmd = { "dotnet", "/usr/bin/omnisharp" },

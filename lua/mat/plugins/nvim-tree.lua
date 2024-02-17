@@ -10,7 +10,21 @@ return {
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
-    nvimtree.setup({})
+    nvimtree.setup({
+      sync_root_with_cwd = true,
+      renderer = {
+        icons = {
+          git_placement = "signcolumn",
+          glyphs = {
+            git = {
+              unstaged = "",
+              staged = "󰱒",
+              untracked = "",
+            }
+          }
+        }
+      }
+    })
 
     vim.api.nvim_create_autocmd({ "QuitPre" }, {
       callback = function()
@@ -32,7 +46,7 @@ return {
     })
 
     -- set keymaps
-    local keymap = vim.keymap -- for conciseness
+    local keymap = vim.keymap                                                                  -- for conciseness
 
     keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
   end,

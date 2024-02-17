@@ -8,12 +8,25 @@ return {
     -- vim.cmd([[colorscheme gruvbox-baby]])
     local kanagawa = require("kanagawa")
     kanagawa.setup({
-      transparent = true,
-      theme = "lotus",
+      transparent = false,
+      theme = "wave",
     })
     vim.cmd([[colorscheme kanagawa]])
 
     vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "NONE", bg = "NONE" })
     vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
+
+    -- TODO move these global?
+
+    -- Function to set highlight with a hex color
+    local function set_highlight(group, hex_color)
+      vim.api.nvim_set_hl(0, group, { fg = hex_color })
+    end
+
+    if vim.opt.background._value == "light" then
+      set_highlight("NonText", "#C8C093")
+      set_highlight("Whitespace", "#DCD7BA")
+      set_highlight("SpecialKey", "#C8C093")
+    end
   end,
 }
