@@ -12,6 +12,14 @@ return {
 
     nvimtree.setup({
       sync_root_with_cwd = true,
+      view = {
+        preserve_window_proportions = false,
+      },
+      actions = {
+        open_file = {
+          resize_window = true,
+        },
+      },
       renderer = {
         icons = {
           git_placement = "signcolumn",
