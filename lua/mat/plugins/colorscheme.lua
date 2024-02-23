@@ -10,6 +10,10 @@ return {
     kanagawa.setup({
       transparent = false,
       theme = "wave",
+      background = {
+        dark = "wave",
+        light = "lotus"
+      }
     })
     vim.cmd([[colorscheme kanagawa]])
 

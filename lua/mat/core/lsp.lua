@@ -18,9 +18,17 @@ M.handlers = {
 function M.on_attach(_, bufnr)
   opts.buffer = bufnr
 
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    callback = function() vim.lsp.buf.clear_references() end,
+    buffer = bufnr,
+  })
+
   -- set keybinds
   opts.desc = "Show LSP references"
   keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definitions, references
+
+  opts.desc = "Show highlight"
+  keymap.set("n", "<leader>h", "<cmd>lua vim.lsp.buf.document_highlight()<CR>", opts) -- show definitions, references
 
   opts.desc = "Go to declaration"
   keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- go to declaration
