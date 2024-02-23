@@ -8,79 +8,13 @@ return {
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
+    local lsp = require("mat.core.lsp")
 
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-    local keymap = vim.keymap -- for conciseness
-
-    local opts = {
-      noremap = true,
-      silent = true,
-    }
-
-    local on_attach = function(client, bufnr)
-      opts.buffer = bufnr
-
-      -- set keybinds
-      opts.desc = "Show LSP references"
-      keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definitions, references
-
-      opts.desc = "Go to declaration"
-      keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- go to declaration
-
-      opts.desc = "Show LSP definitions"
-      keymap.set("n", "gD", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
-
-      opts.desc = "Show LSP implementations"
-      keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp type definitions
-
-      opts.desc = "Show LSP type definitions"
-      keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-      opts.desc = "See available code actions"
-      keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions
-
-      opts.desc = "Smart rename"
-      keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-      opts.desc = "Show buffer diagnostics"
-      keymap.set("n", "gL", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show diagnostics for file
-
-      opts.desc = "Show line diagnostics"
-      keymap.set("n", "gl", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-      opts.desc = "Go to previous diagnostic"
-      keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-
-      opts.desc = "Go to next diagnostic"
-      keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
-
-      opts.desc = "Show documentation for what is under cursor"
-      keymap.set("n", "K", vim.lsp.buf.hover, opts) -- hover
-    end
-
     -- Used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    local border = {
-      { "╭", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "╮", "FloatBorder" },
-      { "│", "FloatBorder" },
-      { "╯", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "╰", "FloatBorder" },
-      { "│", "FloatBorder" },
-    }
-
-    -- LSP settings (for overriding per client)
-    -- To use, add this to the client (currently ignored)
-    -- e.g. lspconfig._client_.setup({handlers=handlers})
-    local handlers = {
-      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-    }
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
@@ -93,8 +27,8 @@ return {
     -- configure lua server (with special settings)
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
-      handlers = handlers,
-      on_attach = on_attach,
+      handlers = lsp.handlers,
+      on_attach = lsp.on_attach,
       settings = { -- custom settings for lua
         Lua = {
           -- make the language server recognize "vim" global
@@ -114,20 +48,14 @@ return {
 
     lspconfig.pyright.setup({
       capabilities = capabilities,
-      handlers = handlers,
-      on_attach = on_attach,
-    })
-
-    lspconfig.tsserver.setup({
-      capabilities = capabilities,
-      handlers = handlers,
-      on_attach = on_attach,
+      handlers = lsp.handlers,
+      on_attach = lsp.on_attach,
     })
 
     -- configure rust-analyzer server
     lspconfig.rust_analyzer.setup({
-      on_attach = on_attach,
-      handlers = handlers,
+      handlers = lsp.handlers,
+      on_attach = lsp.on_attach,
       settings = {
         ["rust-analyzer"] = {
           imports = {
@@ -150,8 +78,8 @@ return {
 
     lspconfig.clangd.setup({
       capabilities = capabilities,
-      handlers = handlers,
-      on_attach = on_attach,
+      handlers = lsp.handlers,
+      on_attach = lsp.on_attach,
     })
 
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
