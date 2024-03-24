@@ -56,6 +56,7 @@ return {
     -- set keymaps
     local keymap = vim.keymap                                                                  -- for conciseness
 
-    keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
+    keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+    keymap.set("n", "<leader>tf", "<cmd>NvimTreeFindFile<CR>", { desc = "Focus current file in buffer" })
   end,
 }

@@ -1,7 +1,7 @@
 local opt = vim.opt -- for conciseness
 
 -- fonts (neovide)
-opt.guifont = "JetBrainsMono Nerd Font Mono:h18"
+opt.guifont = "Cascadia Code:h18"
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
