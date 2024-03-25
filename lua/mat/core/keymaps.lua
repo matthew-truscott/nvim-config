@@ -8,7 +8,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to the top window", remap 
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to the right window", remap = true })
 
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save", silent = true })
-vim.keymap.set("n", "<leader>q", ":wq<CR>", { desc = "Save and Quit", silent = true })
+vim.keymap.set("n", "<leader>q", ":wqa<CR>", { desc = "Save and Quit", silent = true })
 
 -- indent while remaining in visual mode
 vim.keymap.set("v", "<", "<gv")

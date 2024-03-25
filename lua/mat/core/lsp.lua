@@ -15,11 +15,19 @@ M.handlers = {
   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
 }
 
+M.handlers_silent = {}
+for key, value in pairs(M.handlers) do
+  M.handlers_silent[key] = value
+end
+M.handlers_silent["textDocument/publishDiagnostics"] = function() end
+
 function M.on_attach(_, bufnr)
   opts.buffer = bufnr
 
   vim.api.nvim_create_autocmd("CursorMoved", {
-    callback = function() vim.lsp.buf.clear_references() end,
+    callback = function()
+      vim.lsp.buf.clear_references()
+    end,
     buffer = bufnr,
   })
 

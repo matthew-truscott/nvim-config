@@ -55,7 +55,7 @@ return {
       --   unfocus       - close aerial when you leave the original source window
       --   switch_buffer - close aerial when you change buffers in the source window
       --   unsupported   - close aerial when attaching to a buffer that has no symbol source
-      close_automatic_events = {},
+      close_automatic_events = { "unfocus" },
 
       -- Keymaps in aerial window. Can be any value that `vim.keymap.set` accepts OR a table of keymap
       -- options with a `callback` (e.g. { callback = function() ... end, desc = "", nowait = true })
@@ -204,7 +204,7 @@ return {
 
       -- Automatically open aerial when entering supported buffers.
       -- This can be a function (see :help aerial-open-automatic)
-      open_automatic = false,
+      open_automatic = true,
 
       -- Run this command after jumping to a symbol (false will disable)
       post_jump_cmd = "normal! zz",
@@ -360,6 +360,6 @@ return {
     })
 
     -- You probably also want to set a keymap to toggle aerial
-    vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+    vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
   end,
 }

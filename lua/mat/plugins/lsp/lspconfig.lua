@@ -46,11 +46,36 @@ return {
       },
     })
 
+    -- PYRIGHT config (works, currently set up without diagnostics to try
+    -- and connect with mypy)
     lspconfig.pyright.setup({
       capabilities = capabilities,
       handlers = lsp.handlers,
       on_attach = lsp.on_attach,
     })
+
+    -- PYRIGHT config (works, currently set up without diagnostics to try
+    -- and connect with mypy)
+    -- lspconfig.pyright.setup({
+    --   capabilities = capabilities,
+    --   handlers = lsp.handlers_silent,
+    --   on_attach = function(client, bufnr)
+    --     lsp.on_attach(client, bufnr)
+    --     client.server_capabilities.codeActionProvider = false
+    --   end,
+    --   settings = {
+    --     pyright = {
+    --       disableOrganizeImports = true,
+    --     },
+    --     python = {
+    --       analysis = {
+    --         autoSearchPaths = true,
+    --         typeCheckingMode = "basic",
+    --         useLibraryCodeForTypes = true,
+    --       },
+    --     },
+    --   },
+    -- })
 
     -- configure rust-analyzer server
     lspconfig.rust_analyzer.setup({
