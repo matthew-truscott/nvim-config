@@ -10,6 +10,8 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to the right window", rema
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save", silent = true })
 vim.keymap.set("n", "<leader>q", ":wqa<CR>", { desc = "Save and Quit", silent = true })
 
+vim.keymap.set("n", "<leader>bd", ":bp|bd#<CR>", { desc = "Delete current buffer", silent = true })
+
 -- indent while remaining in visual mode
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
