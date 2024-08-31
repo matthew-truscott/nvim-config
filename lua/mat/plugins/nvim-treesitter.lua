@@ -2,6 +2,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  dependencies = {
+    -- NOTE: additional parser
+    { "nushell/tree-sitter-nu" },
+  },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local treesitter = require("nvim-treesitter.configs")
@@ -20,7 +24,7 @@ return {
       ensure_installed = {
         "lua",
         "vim",
-        "gitignore"
+        "gitignore",
       },
       incremental_selection = {
         enable = true,

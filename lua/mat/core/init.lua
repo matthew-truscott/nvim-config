@@ -1,5 +1,9 @@
 require("mat.core.keymaps")
 require("mat.core.options")
+require("mat.core.diagnostics")
 
-vim.g.python_host_prog = "/home/mat/.pyenv/versions/3.12-dev/bin/python"
-vim.g.python3_host_prog = "/home/mat/.pyenv/versions/3.12-dev/bin/python3"
+if vim.env.ZELLIJ ~= nil then
+  vim.fn.system({ "zellij", "action", "switch-mode", "locked" })
+end
+
+vim.g.python3_host_prog = "/home/matthew.t/app/neovim-py/.venv/bin/python"

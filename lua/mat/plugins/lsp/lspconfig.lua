@@ -48,11 +48,28 @@ return {
 
     -- PYRIGHT config (works, currently set up without diagnostics to try
     -- and connect with mypy)
-    lspconfig.pyright.setup({
+    -- lspconfig.pyright.setup({
+    --   capabilities = capabilities,
+    --   handlers = lsp.handlers,
+    --   on_attach = lsp.on_attach,
+    --   root_dir = lspconfig.util.root_pattern(".git"),
+    -- })
+
+    -- BASEDPYRIGHT config (works, currently set up without diagnostics to try
+    -- and connect with mypy)
+    lspconfig.basedpyright.setup({
       capabilities = capabilities,
       handlers = lsp.handlers,
       on_attach = lsp.on_attach,
+      root_dir = lspconfig.util.root_pattern(".git"),
     })
+
+    -- -- RUFF config
+    -- lspconfig.ruff.setup({
+    --   capabilities = capabilities,
+    --   handlers = lsp.handlers,
+    --   on_attach = lsp.on_attach_backup,
+    -- })
 
     -- PYRIGHT config (works, currently set up without diagnostics to try
     -- and connect with mypy)

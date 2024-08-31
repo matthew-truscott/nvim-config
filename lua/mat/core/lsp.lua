@@ -21,6 +21,11 @@ for key, value in pairs(M.handlers) do
 end
 M.handlers_silent["textDocument/publishDiagnostics"] = function() end
 
+function M.on_attach_backup(client, bufnr)
+  opts.buffer = bufnr
+  client.server_capabilities.hoverProvider = false
+end
+
 function M.on_attach(_, bufnr)
   opts.buffer = bufnr
 

@@ -28,6 +28,7 @@ return {
         rust = { "rustfmt" },
         lua = { "stylua" },
         csharp = { "csharpier" },
+        json = { "jq" },
       },
       format_on_save = {
         lsp_fallback = false,
