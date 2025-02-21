@@ -124,6 +124,33 @@ return {
       on_attach = lsp.on_attach,
     })
 
+    -- If you are using mason.nvim, you can get the ts_plugin_path like this
+    -- local mason_registry = require("mason-registry")
+    -- local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+    --   .. "/node_modules/@vue/language-server"
+    --
+    -- lspconfig.ts_ls.setup({
+    --   init_options = {
+    --     plugins = {
+    --       {
+    --         name = "@vue/typescript-plugin",
+    --         location = vue_language_server_path,
+    --         languages = { "vue" },
+    --       },
+    --     },
+    --   },
+    --   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+    --   capabilities = capabilities,
+    --   handlers = lsp.handlers,
+    --   on_attach = lsp.on_attach,
+    -- })
+
+    -- No need to set `hybridMode` to `true` as it's the default value
+    lspconfig.volar.setup({
+      capabilities = capabilities,
+      handlers = lsp.handlers,
+      on_attach = lsp.on_attach,
+    })
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
     lspconfig.omnisharp.setup({
       cmd = { "dotnet", "/usr/bin/omnisharp" },
