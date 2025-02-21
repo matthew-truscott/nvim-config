@@ -26,12 +26,16 @@ return {
           n = {
             ["<k>"] = actions.move_selection_previous, -- move to previous result
             ["<j>"] = actions.move_selection_next, -- move to next result
+            ["<h>"] = actions.cycle_history_prev,
+            ["<l>"] = actions.cycle_history_next,
+            ["dd"] = actions.delete_buffer,
           },
         },
         layout_config = {
-          vertical = { width = 0.9 }
+          vertical = { width = 0.9 },
         },
         layout_strategy = "vertical",
+        path_display = { shorten = 2, truncate = 5 },
       },
     })
 
@@ -39,8 +43,11 @@ return {
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
+    local builtin = require("telescope.builtin")
 
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-    keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Fuzzy find string in cwd" })
+    keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+    keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Telescope live grep" })
+    keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+    keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
   end,
 }
