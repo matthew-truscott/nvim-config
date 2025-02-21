@@ -38,6 +38,9 @@ return {
     end
 
     local dap = require("dap")
+    local overseer = require("overseer")
+
+    overseer.enable_dap()
 
     local pythonPath = function()
       local cwd = vim.fn.getcwd()

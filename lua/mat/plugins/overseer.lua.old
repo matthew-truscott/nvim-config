@@ -1,0 +1,12 @@
+return {
+  "stevearc/overseer.nvim",
+  config = function()
+    local overseer = require("overseer")
+    overseer.setup({
+      -- Default task strategy
+      strategy = "terminal",
+      dap = false,
+      templates = { "falcon.api" },
+    })
+  end,
+}
