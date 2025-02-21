@@ -29,6 +29,7 @@ return {
         lua = { "stylua" },
         csharp = { "csharpier" },
         json = { "jq" },
+        vue = { "prettier" },
       },
       format_on_save = {
         lsp_fallback = false,

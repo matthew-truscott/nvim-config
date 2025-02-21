@@ -10,7 +10,7 @@ return {
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
     "zbirenbaum/copilot.lua",
-    "zbirenbaum/copilot-cmp",
+    -- "zbirenbaum/copilot-cmp",
   },
   config = function()
     local cmp = require("cmp")
@@ -21,7 +21,7 @@ return {
 
     local copilot = require("copilot")
 
-    local copilot_cmp = require("copilot_cmp")
+    -- local copilot_cmp = require("copilot_cmp")
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
@@ -43,16 +43,16 @@ return {
         },
       },
       suggestion = {
-        enabled = false,
+        enabled = true,
         auto_trigger = false,
         debounce = 75,
         keymap = {
-          accept = "<A-L>",
+          accept = "<A-p>",
           accept_word = false,
           accept_line = false,
-          next = "<A-J>",
-          prev = "<A-K>",
-          dismiss = "<A-H>",
+          next = "<A-i>",
+          prev = "<A-o>",
+          dismiss = "<A-u>",
         },
       },
       filetypes = {
@@ -70,7 +70,7 @@ return {
       server_opts_overrides = {},
     })
 
-    copilot_cmp.setup()
+    -- copilot_cmp.setup()
 
     cmp.setup({
       completion = {
@@ -96,7 +96,7 @@ return {
         { name = "luasnip", group_index = 2 }, -- snippets
         { name = "buffer", group_index = 2 }, -- text within current buffer
         { name = "path", group_index = 2 }, -- file system paths
-        { name = "copilot", group_index = 2 }, -- file system paths
+        -- { name = "copilot", group_index = 2 }, -- file system paths
       }),
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {

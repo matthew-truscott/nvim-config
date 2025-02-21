@@ -11,9 +11,16 @@ return {
     vim.g.loaded_netrwPlugin = 1
 
     nvimtree.setup({
+      sort = {
+        sorter = "case_sensitive",
+      },
+      filters = {
+        dotfiles = true,
+      },
       sync_root_with_cwd = true,
       view = {
         preserve_window_proportions = false,
+        width = 40,
       },
       actions = {
         open_file = {
@@ -21,6 +28,7 @@ return {
         },
       },
       renderer = {
+        group_empty = true,
         icons = {
           git_placement = "signcolumn",
           glyphs = {
