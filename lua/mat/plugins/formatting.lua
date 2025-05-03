@@ -30,6 +30,7 @@ return {
         csharp = { "csharpier" },
         json = { "jq" },
         vue = { "prettier" },
+        -- toml = { "pyproject-fmt" },
       },
       format_on_save = {
         lsp_fallback = false,

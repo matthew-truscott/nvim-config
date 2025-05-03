@@ -1,4 +1,5 @@
 local opt = vim.opt -- for conciseness
+local o = vim.o
 
 opt.guifont = { "Cascadia Code", ":h18" }
 
@@ -24,6 +25,7 @@ opt.foldlevel = 99
 
 -- ruler
 opt.colorcolumn = "120"
+opt.scrolloff = 30
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -64,3 +66,5 @@ opt.listchars = {
 }
 
 opt.pumheight = 10
+
+o.winborder = "single"
