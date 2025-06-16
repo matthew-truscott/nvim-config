@@ -18,3 +18,14 @@ vim.keymap.set("v", ">", ">gv")
 
 -- clear highlighting
 vim.keymap.set("n", "<leader>no", ":noh<CR>", { desc = "Clear Highlighting", silent = true })
+
+-- When lines are on, text is off. Text on, lines off. Minimize clutter.
+vim.keymap.set("n", "<leader>bl", function()
+  vim.diagnostic.config({
+    virtual_lines = not vim.diagnostic.config().virtual_lines,
+  })
+end, { desc = "Toggle diagnostic [l]ines" })
+
+vim.keymap.set("n", "gl", function()
+  vim.diagnostic.open_float()
+end, { desc = "Show diagnostic under cursor" })

@@ -30,6 +30,8 @@ return {
         csharp = { "csharpier" },
         json = { "jq" },
         vue = { "prettier" },
+        markdown = { "prettier" },
+        -- yaml = { "yamlfmt" },
         -- toml = { "pyproject-fmt" },
       },
       format_on_save = {

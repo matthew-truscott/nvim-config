@@ -8,18 +8,24 @@ return {
     -- vim.cmd([[colorscheme gruvbox-baby]])
     local kanagawa = require("kanagawa")
     kanagawa.setup({
+      compile = true,
+      undercurl = true,
       transparent = false,
       theme = "wave",
       background = {
         dark = "wave",
         light = "lotus",
       },
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = false },
+      statementStyle = { bold = true },
       overrides = function(colors)
         local theme = colors.theme
         return {
-          DiagnosticUnderlineWarn = { undercurl = false, underline = false }
+          DiagnosticUnderlineWarn = { undercurl = false, underline = false },
         }
-      end
+      end,
     })
     vim.cmd([[colorscheme kanagawa]])
 

@@ -23,6 +23,8 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
 
+opt.conceallevel = 1
+
 -- ruler
 opt.colorcolumn = "120"
 opt.scrolloff = 30
