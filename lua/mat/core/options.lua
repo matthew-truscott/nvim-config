@@ -54,6 +54,10 @@ else
 end
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
+-- auto-reload files when changed externally
+opt.autoread = true
+opt.updatetime = 250
+
 -- splits
 opt.splitright = true
 opt.splitbelow = true

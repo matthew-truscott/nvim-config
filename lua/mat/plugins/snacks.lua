@@ -6,7 +6,7 @@ return {
   opts = {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
-    explorer = { enabled = false },
+    explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
     lazygit = {
@@ -35,6 +35,31 @@ return {
             box = "horizontal",
             { win = "list", border = "none" },
             { win = "preview", title = "{preview}", width = 0.6, border = "left" },
+          },
+        },
+      },
+      sources = {
+        explorer = {
+          preview = "main",
+          layout = {
+            layout = {
+              box = "vertical",
+              backdrop = false,
+              width = 40,
+              min_width = 40,
+              height = 0,
+              position = "left",
+              border = "none",
+              {
+                win = "input",
+                height = 1,
+                border = "rounded",
+                title = "{title} {live} {flags}",
+                title_pos = "center",
+              },
+              { win = "list", border = "none" },
+              { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+            },
           },
         },
       },
@@ -356,9 +381,14 @@ return {
     {
       "gd",
       function()
-        Snacks.picker.lsp_definitions()
+        -- In markdown files, use ObsidianFollowLink if available
+        if vim.bo.filetype == "markdown" and vim.fn.exists(":ObsidianFollowLink") == 2 then
+          vim.cmd("ObsidianFollowLink")
+        else
+          Snacks.picker.lsp_definitions()
+        end
       end,
-      desc = "Goto Definition",
+      desc = "Goto Definition / Follow Link",
     },
     {
       "gD",

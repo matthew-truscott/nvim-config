@@ -32,9 +32,11 @@ end
 
 -- LSP activation (references lsp/<filename>
 vim.lsp.enable({
-  "luals",
+  "lua_ls",
   "basedpyright",
   "ruff",
+  "eslint",
+  "rustanalyzer",
 })
 vim.diagnostic.config({
   signs = {

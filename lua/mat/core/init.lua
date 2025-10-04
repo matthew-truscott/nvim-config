@@ -1,6 +1,7 @@
 require("mat.core.keymaps")
 require("mat.core.options")
 require("mat.core.lsp")
+require("mat.core.autocmds")
 
 if vim.env.ZELLIJ ~= nil then
   vim.fn.system({ "zellij", "action", "switch-mode", "locked" })

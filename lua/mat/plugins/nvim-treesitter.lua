@@ -25,6 +25,9 @@ return {
         "lua",
         "vim",
         "gitignore",
+        "markdown",
+        "markdown_inline",
+        "latex",
       },
       incremental_selection = {
         enable = true,

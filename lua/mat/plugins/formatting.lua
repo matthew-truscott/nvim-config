@@ -18,18 +18,16 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        python = function()
-          if CheckDarkerAvailability() then
-            return { "darker" }
-          else
-            return { "isort", "black" }
-          end
-        end,
+        python = { "ruff_format" },
         rust = { "rustfmt" },
         lua = { "stylua" },
         csharp = { "csharpier" },
         json = { "jq" },
         vue = { "prettier" },
+        typescript = { "prettierd" },
+        typescript_react = { "prettierd" },
+        javascript = { "prettierd" },
+        javascript_react = { "prettierd" },
         markdown = { "prettier" },
         -- yaml = { "yamlfmt" },
         -- toml = { "pyproject-fmt" },
