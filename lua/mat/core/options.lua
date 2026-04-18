@@ -20,10 +20,10 @@ opt.wrap = false -- disable line wrapping
 -- folding
 opt.foldenable = true
 opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
 
-opt.conceallevel = 1
+opt.conceallevel = 2
 
 -- ruler
 opt.colorcolumn = "120"
@@ -44,10 +44,7 @@ opt.iskeyword:append("-")
 
 -- appearance
 
--- turn on termguicolors for nightfly colorscheme to work
--- (have to use iterm2 or any other true color terminal)
-opt.termguicolors = true
-if os.getenv("theme") == "light" then
+if vim.env.TERM_BG == "light" or vim.env.theme == "light" then
   opt.background = "light"
 else
   opt.background = "dark" -- colorschemes that can be light or dark will be made dark

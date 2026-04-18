@@ -57,7 +57,7 @@ return {
           { "encoding" },
           {
             "filename",
-            path = 3,
+            path = 1,
           },
           { "fileformat" },
           { "filetype" },

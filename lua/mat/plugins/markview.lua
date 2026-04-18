@@ -1,6 +1,7 @@
 -- For `plugins/markview.lua` users.
 return {
   "OXY2DEV/markview.nvim",
+  enabled = false,
   lazy = false,
 
   -- For `nvim-treesitter` users.
@@ -8,17 +9,14 @@ return {
 
   config = function()
     require("markview").setup({
+      modes = { "n", "no", "c" },
+      hybrid_modes = { "n" },
 
-      preview = {
-        modes = { "n", "no", "c" },
-        hybrid_modes = { "n" },
-
-        callbacks = {
-          on_enable = function(_, win)
-            vim.wo[win].conceallevel = 2
-            vim.wo[win].concealcursor = "nc"
-          end,
-        },
+      callbacks = {
+        on_enable = function(_, win)
+          vim.wo[win].conceallevel = 2
+          vim.wo[win].concealcursor = "nc"
+        end,
       },
 
       latex = {

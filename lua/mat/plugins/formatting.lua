@@ -18,7 +18,7 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        python = { "ruff_format" },
+        python = { "ruff_format", "ruff_fix" },
         rust = { "rustfmt" },
         lua = { "stylua" },
         csharp = { "csharpier" },

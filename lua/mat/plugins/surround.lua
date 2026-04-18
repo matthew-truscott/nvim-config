@@ -1,3 +1,6 @@
 return {
-  "tpope/vim-surround",
+  "kylechui/nvim-surround",
+  version = "*",
+  event = "VeryLazy",
+  opts = {},
 }

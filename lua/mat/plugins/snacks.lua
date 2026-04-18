@@ -13,9 +13,11 @@ return {
       configure = true,
       win = {
         style = "lazygit",
+        width = 0,
+        height = 0,
+        border = "none",
+        backdrop = false,
       },
-      height = 0,
-      width = 0,
     },
     picker = {
       enabled = true,
@@ -165,8 +167,9 @@ return {
       },
     },
     quickfile = { enabled = true },
+    zen = { enabled = false },
     scope = { enabled = true },
-    scroll = { enabled = true },
+    scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = true },
     styles = {
@@ -476,7 +479,7 @@ return {
         Snacks.toggle.diagnostics():map("<leader>ud")
         Snacks.toggle.line_number():map("<leader>ul")
         Snacks.toggle
-          .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+          .option("conceallevel", { off = 0, on = 2 })
           :map("<leader>uc")
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")

@@ -18,5 +18,7 @@ vim.api.nvim_create_user_command("LspRestart", function(info)
 end, {
   desc = "Restart the given client(s)",
   nargs = "+",
-  complete = complete_client,
+  complete = function()
+    return vim.tbl_keys(vim.lsp.config)
+  end,
 })

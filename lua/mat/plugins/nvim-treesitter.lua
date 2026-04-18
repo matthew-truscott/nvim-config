@@ -28,6 +28,7 @@ return {
         "markdown",
         "markdown_inline",
         "latex",
+        "julia",
       },
       incremental_selection = {
         enable = true,

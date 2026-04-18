@@ -1,4 +1,4 @@
-----@type vim.lsp.Config
+---@type vim.lsp.Config
 return {
   cmd = { vim.fn.exepath("ruff"), "server" },
   on_attach = function(client, _)

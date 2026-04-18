@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(nvim:*)"
+      "Bash(nvim:*)",
+      "Bash(gh search code:*)",
+      "Bash(gh api:*)"
     ],
     "deny": [],
     "ask": []

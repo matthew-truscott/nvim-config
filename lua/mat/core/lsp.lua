@@ -1,50 +1,28 @@
-local M = {}
-
-local keymap = vim.keymap -- for conciseness
-
-local opts = {
-  noremap = true,
-  silent = true,
-}
-
-M.handlers = {}
-M.handlers_silent = {}
-for key, value in pairs(M.handlers) do
-  M.handlers_silent[key] = value
-end
-M.handlers_silent["textDocument/publishDiagnostics"] = function() end
-
-function M.on_attach_backup(client, bufnr)
-  opts.buffer = bufnr
-  client.server_capabilities.hoverProvider = false
+-- LSP activation (references lsp/<filename>)
+-- Use ty if available in the project venv, otherwise basedpyright
+local function has_ty()
+  local root = vim.fs.root(0, { "pyproject.toml" })
+  return root and vim.uv.fs_stat(root .. "/.venv/bin/ty") ~= nil
 end
 
-function M.on_attach(_, bufnr)
-  opts.buffer = bufnr
+local python_typechecker = has_ty() and "ty" or "basedpyright"
 
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    callback = function()
-      vim.lsp.buf.clear_references()
-    end,
-    buffer = bufnr,
-  })
-end
-
--- LSP activation (references lsp/<filename>
 vim.lsp.enable({
   "lua_ls",
-  "basedpyright",
+  python_typechecker,
   "ruff",
   "eslint",
   "rustanalyzer",
+  "julials",
 })
+
 vim.diagnostic.config({
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
     },
   },
   virtual_text = false,
@@ -56,5 +34,3 @@ vim.diagnostic.config({
     source = true,
   },
 })
-
-return M

@@ -3,6 +3,7 @@ return {
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = "markdown",
+  priority = 50, -- Load after markview (which has priority 49)
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
   --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
@@ -51,14 +52,34 @@ return {
     workspaces = {
       {
         name = "work",
-        path = "~/vaults/turintech/",
+        path = "~/documents/work/",
       },
-      {
-        name = "personal",
-        path = "~/vaults/personal/",
-      },
+    },
+    daily_notes = {
+      -- Optional, if you keep daily notes in a separate directory.
+      folder = "daily",
+    },
+
+    -- UI settings
+    ui = {
+      enable = true,
     },
 
     -- see below for full list of options 👇
   },
+  config = function(_, opts)
+    require("obsidian").setup(opts)
+
+    -- Ensure conceallevel is set correctly for markdown files
+    -- Use a delayed autocmd to run AFTER markview sets conceallevel
+    vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "BufWinEnter" }, {
+      pattern = "markdown",
+      callback = function()
+        -- Delay to ensure this runs after markview
+        vim.defer_fn(function()
+          vim.opt_local.conceallevel = 2
+        end, 10)
+      end,
+    })
+  end,
 }

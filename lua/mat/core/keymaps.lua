@@ -11,6 +11,12 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save", silent = true })
 vim.keymap.set("n", "<leader>q", ":wqa<CR>", { desc = "Save and Quit", silent = true })
 
 vim.keymap.set("n", "<leader>bd", ":bp|bd#<CR>", { desc = "Delete current buffer", silent = true })
+-- Copy relative file path
+vim.keymap.set('n', '<leader>cf', function()
+  local path = vim.fn.expand('%:.')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, { desc = 'Copy relative path' })
 
 -- indent while remaining in visual mode
 vim.keymap.set("v", "<", "<gv")

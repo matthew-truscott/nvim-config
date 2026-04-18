@@ -7,6 +7,13 @@ return {
     "pyproject.toml",
     "pyrightconfig.json",
   },
+  capabilities = {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
+    },
+  },
   settings = {
     basedpyright = {
       analysis = {
