@@ -3,7 +3,8 @@
     "allow": [
       "Bash(nvim:*)",
       "Bash(gh search code:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(gh auth *)"
     ],
     "deny": [],
     "ask": []

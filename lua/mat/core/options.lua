@@ -65,7 +65,6 @@ opt.listchars = {
   -- eol = "↵",
   trail = "~",
   nbsp = "␣",
-  space = "·",
 }
 
 opt.pumheight = 10

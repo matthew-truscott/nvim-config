@@ -35,6 +35,26 @@ return {
     global_keymaps = false,
     global_keymaps_prefix = "<leader>r",
     kulala_keymaps_prefix = "",
+    -- Restore contenttypes defaults dropped upstream in v6.10.1 (commit 8efd731),
+    -- which broke JSONPath resolution for request variables like
+    -- {{login.response.body.$.access_token}}. Remove once fixed upstream.
+    contenttypes = {
+      ["application/json"] = {
+        ft = "json",
+        pathresolver = function(...)
+          return require("kulala.parser.jsonpath").parse(...)
+        end,
+      },
+      ["application/graphql"] = { ft = "graphql", pathresolver = nil },
+      ["application/javascript"] = { ft = "javascript", pathresolver = nil },
+      ["application/lua"] = { ft = "lua", pathresolver = nil },
+      ["application/graphql-response+json"] = "application/json",
+      ["application/xml"] = {
+        ft = "xml",
+        pathresolver = vim.fn.executable("xmllint") == 1 and { "xmllint", "--xpath", "{{path}}", "-" },
+      },
+      ["text/html"] = { ft = "html", pathresolver = nil },
+    },
     ui = {
       split_direction = "horizontal",
       max_response_size = 524000,

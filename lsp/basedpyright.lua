@@ -19,6 +19,8 @@ return {
       analysis = {
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
+        autoImportCompletions = true,
+        diagnosticMode = "workspace",
       },
     },
   },

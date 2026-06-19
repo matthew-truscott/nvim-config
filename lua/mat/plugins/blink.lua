@@ -1,6 +1,18 @@
 return {
   "saghen/blink.cmp",
-  build = "cargo build --release",
+  -- Pinned to the commit just before the `types.catchall()` migration, which
+  -- silently drops all custom keymaps (custom keys become invisible to pairs()).
+  -- Upstream regression: https://github.com/saghen/blink.cmp/issues/2550
+  -- Remove both `commit` pins once that issue is fixed, then `:Lazy update`.
+  commit = "0194153",
+  dependencies = {
+    { "saghen/blink.lib", commit = "220979f" },
+  },
+  build = function()
+    -- build the fuzzy matcher, wait up to 60 seconds
+    -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+    require("blink.cmp").build():wait(60000)
+  end,
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
