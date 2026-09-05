@@ -28,6 +28,13 @@ return {
     window = {
       position = "left",
       width = 40,
+      mappings = {
+        ["g/"] = function(state)
+          local node = state.tree:get_node()
+          local cwd = node.type == "directory" and node.path or vim.fn.fnamemodify(node.path, ":h")
+          require("snacks").picker.grep({ cwd = cwd })
+        end,
+      },
     },
     filesystem = {
       follow_current_file = { enabled = true },

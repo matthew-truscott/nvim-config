@@ -182,7 +182,7 @@ return {
         -- path to the sqlite3 library
         -- If not set, it will try to load the library by name.
         -- On Windows it will download the library from the internet.
-        sqlite3_path = "/home/matthew.t/.local/bin/sqlite3", ---@type string?
+        sqlite3_path = "/usr/lib/x86_64-linux-gnu/libsqlite3.so.0", ---@type string?
       },
     },
     quickfile = { enabled = true },
@@ -440,6 +440,23 @@ return {
         Snacks.picker.lsp_type_definitions()
       end,
       desc = "Goto T[y]pe Definition",
+    },
+    -- Type hierarchy: walk the class tree up (supertypes) and down (subtypes).
+    -- Class-level only -- ty resolves implementation/definition identically for
+    -- a `def`, so there is no jump-to-override for methods.
+    {
+      "grs",
+      function()
+        vim.lsp.buf.typehierarchy("supertypes")
+      end,
+      desc = "Goto Supertypes",
+    },
+    {
+      "grc",
+      function()
+        vim.lsp.buf.typehierarchy("subtypes")
+      end,
+      desc = "Goto Subtypes",
     },
     {
       "<leader>ss",
