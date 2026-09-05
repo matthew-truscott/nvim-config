@@ -9,4 +9,8 @@ if vim.env.ZELLIJ ~= nil then
   vim.fn.system({ "zellij", "action", "switch-mode", "locked" })
 end
 
-vim.g.python3_host_prog = "/home/matthew.t/app/neovim-py/.venv/bin/python"
+-- No Python remote plugins (rplugin) are used, so the python3 provider isn't
+-- needed. The old neovim-py venv it pointed at was removed. Disable it so
+-- :checkhealth stops erroring on the missing interpreter. To use a Python
+-- plugin later, drop this line and set g:python3_host_prog to a venv with pynvim.
+vim.g.loaded_python3_provider = 0

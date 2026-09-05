@@ -10,7 +10,8 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to the right window", rema
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save", silent = true })
 vim.keymap.set("n", "<leader>q", ":wqa<CR>", { desc = "Save and Quit", silent = true })
 
-vim.keymap.set("n", "<leader>bd", ":bp|bd#<CR>", { desc = "Delete current buffer", silent = true })
+-- <leader>bd (delete buffer) is mapped in plugins/snacks.lua via Snacks.bufdelete().
+
 -- Copy relative file path
 vim.keymap.set('n', '<leader>cf', function()
   local path = vim.fn.expand('%:.')
@@ -35,3 +36,7 @@ end, { desc = "Toggle diagnostic [l]ines" })
 vim.keymap.set("n", "gl", function()
   vim.diagnostic.open_float()
 end, { desc = "Show diagnostic under cursor" })
+
+vim.keymap.set("n", "<leader>bh", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay [h]ints" })
