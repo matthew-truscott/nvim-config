@@ -1,5 +1,6 @@
 require("mat.core.keymaps")
 require("mat.core.options")
+require("mat.core.treesitter")
 require("mat.core.lsp")
 require("mat.core.autocmds")
 require("mat.core.commands")
