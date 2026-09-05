@@ -36,6 +36,18 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 -- cursor line
 opt.cursorline = false -- highlight the current cursor line
 
+-- Colour the cursor from the theme's Cursor group instead of the terminal
+-- default. The default guicursor attaches no highlight, so nvim reset the
+-- cursor to ghostty's default (hard to see on dark). Attaching Cursor/lCursor
+-- makes nvim set it explicitly (fujiWhite in wave / lotusInk in lotus), and it
+-- follows a light/dark flip since kanagawa reloads Cursor.
+opt.guicursor = table.concat({
+  "n-v-c-sm:block-Cursor/lCursor",
+  "i-ci-ve:ver25-Cursor/lCursor",
+  "r-cr-o:hor20-Cursor/lCursor",
+  "t:block-blinkon500-blinkoff500-TermCursor",
+}, ",")
+
 -- clipboard
 opt.clipboard:append("unnamedplus")
 
@@ -43,11 +55,14 @@ opt.clipboard:append("unnamedplus")
 opt.iskeyword:append("-")
 
 -- appearance
-
+--
+-- Do NOT force 'background' here. Neovim's TUI queries the terminal background
+-- (OSC 11) at startup and subscribes to DEC mode 2031, so it flips 'background'
+-- live when the terminal reports a system light/dark switch (ghostty follows
+-- org.freedesktop.appearance). Setting it manually would fight that.
+-- Fallback for terminals that can't be queried (bare TTY, tmux w/o passthrough):
 if vim.env.TERM_BG == "light" or vim.env.theme == "light" then
   opt.background = "light"
-else
-  opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 end
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
@@ -65,6 +80,7 @@ opt.listchars = {
   -- eol = "↵",
   trail = "~",
   nbsp = "␣",
+  tab = "  ", -- render tabs as plain indentation, not ^I
 }
 
 opt.pumheight = 10

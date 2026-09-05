@@ -20,29 +20,33 @@ return {
       functionStyle = {},
       keywordStyle = { italic = false },
       statementStyle = { bold = true },
-      overrides = function(colors)
-        local theme = colors.theme
+      overrides = function()
         return {
           DiagnosticUnderlineWarn = { undercurl = false, underline = false },
         }
       end,
     })
+    -- Re-apply manual highlight tweaks on every (re)load of the scheme. kanagawa
+    -- reloads automatically whenever &background flips -- including when the
+    -- terminal reports a live system light/dark switch (DEC mode 2031) -- so
+    -- these must live in a ColorScheme autocmd, not run once at setup, or they'd
+    -- be lost the moment you switch themes.
+    local function apply_overrides()
+      vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "NONE", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
+      if vim.o.background == "light" then
+        vim.api.nvim_set_hl(0, "NonText", { fg = "#C8C093" })
+        vim.api.nvim_set_hl(0, "Whitespace", { fg = "#DCD7BA" })
+        vim.api.nvim_set_hl(0, "SpecialKey", { fg = "#C8C093" })
+      end
+    end
+
+    -- Registered before the initial `colorscheme` call so it also fires on load.
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      pattern = "kanagawa",
+      callback = apply_overrides,
+    })
+
     vim.cmd([[colorscheme kanagawa]])
-
-    vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "NONE", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
-
-    -- TODO move these global?
-
-    -- Function to set highlight with a hex color
-    local function set_highlight(group, hex_color)
-      vim.api.nvim_set_hl(0, group, { fg = hex_color })
-    end
-
-    if vim.o.background == "light" then
-      set_highlight("NonText", "#C8C093")
-      set_highlight("Whitespace", "#DCD7BA")
-      set_highlight("SpecialKey", "#C8C093")
-    end
   end,
 }
